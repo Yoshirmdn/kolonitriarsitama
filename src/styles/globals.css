@@ -1,0 +1,176 @@
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500&family=Jost:wght@100;200;300;400;500;600&family=Space+Mono:ital,wght@0,400;0,700;1,400&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --color-bg: #faf8f5;
+  --color-fg: #0c0a09;
+  --color-accent: #9a7355;
+  --color-muted: #d6c4b0;
+  --color-surface: #f4efe8;
+}
+
+.dark {
+  --color-bg: #0c0a09;
+  --color-fg: #faf8f5;
+  --color-accent: #c4a98e;
+  --color-muted: #574032;
+  --color-surface: #1a1310;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: auto;
+}
+
+body {
+  background-color: var(--color-bg);
+  color: var(--color-fg);
+  font-family: 'Jost', sans-serif;
+  font-weight: 300;
+  overflow-x: hidden;
+  transition: background-color 0.4s ease, color 0.4s ease;
+}
+
+/* Custom cursor */
+* { cursor: none !important; }
+
+/* Scrollbar */
+::-webkit-scrollbar { width: 2px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: var(--color-accent); }
+
+/* Selection */
+::selection {
+  background: var(--color-accent);
+  color: var(--color-bg);
+}
+
+/* Smooth scroll for Lenis */
+html.lenis { height: auto; }
+.lenis.lenis-smooth { scroll-behavior: auto; }
+.lenis.lenis-smooth [data-lenis-prevent] { overscroll-behavior: contain; }
+.lenis.lenis-stopped { overflow: hidden; }
+.lenis.lenis-scrolling iframe { pointer-events: none; }
+
+@layer components {
+  .section-padding {
+    @apply px-6 md:px-12 lg:px-20 xl:px-32;
+  }
+
+  .heading-xl {
+    @apply font-display text-6xl md:text-8xl lg:text-9xl font-light leading-none tracking-tight;
+  }
+
+  .heading-lg {
+    @apply font-display text-4xl md:text-6xl lg:text-7xl font-light leading-none;
+  }
+
+  .heading-md {
+    @apply font-display text-3xl md:text-4xl lg:text-5xl font-light leading-tight;
+  }
+
+  .label-text {
+    @apply font-mono text-xs tracking-ultra uppercase;
+  }
+
+  .body-text {
+    @apply font-body text-sm md:text-base font-light leading-relaxed;
+  }
+
+  .btn-primary {
+    @apply inline-flex items-center gap-3 px-8 py-4 bg-[var(--color-fg)] text-[var(--color-bg)] font-body font-light text-sm tracking-widest uppercase transition-all duration-600 hover:gap-6;
+  }
+
+  .btn-outline {
+    @apply inline-flex items-center gap-3 px-8 py-4 border border-[var(--color-fg)] text-[var(--color-fg)] font-body font-light text-sm tracking-widest uppercase transition-all duration-600 hover:bg-[var(--color-fg)] hover:text-[var(--color-bg)];
+  }
+
+  .line-divider {
+    @apply w-full h-[1px] bg-[var(--color-muted)] opacity-40;
+  }
+
+  .glass-nav {
+    backdrop-filter: blur(20px) saturate(180%);
+    -webkit-backdrop-filter: blur(20px) saturate(180%);
+    background: rgba(250, 248, 245, 0.85);
+  }
+
+  .dark .glass-nav {
+    background: rgba(12, 10, 9, 0.85);
+  }
+
+  .clip-reveal {
+    clip-path: inset(0 100% 0 0);
+  }
+
+  .image-hover {
+    @apply overflow-hidden;
+  }
+
+  .image-hover img {
+    @apply transition-transform duration-[800ms] ease-out;
+  }
+
+  .image-hover:hover img {
+    @apply scale-105;
+  }
+}
+
+/* GSAP will-change optimization */
+.gsap-animate {
+  will-change: transform, opacity;
+}
+
+/* Magnetic button */
+.magnetic-btn {
+  position: relative;
+  display: inline-block;
+  transition: transform 0.3s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+/* Loader */
+#loader {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  background: var(--color-fg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Horizontal scroll section */
+.horizontal-section {
+  display: flex;
+  flex-wrap: nowrap;
+}
+
+/* Noise texture overlay */
+.noise-overlay::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* Progress bar */
+#scroll-progress {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 2px;
+  background: var(--color-accent);
+  z-index: 9998;
+  transform-origin: left;
+  transform: scaleX(0);
+}
