@@ -4,6 +4,7 @@ import ServiceCard from '../components/ui/ServiceCard';
 import SectionTitle from '../components/ui/SectionTitle';
 import CTASection from '../components/sections/CTASection';
 import ProcessSection from '../components/sections/ProcessSection';
+import Pricecalcuator from '../components/sections/Pricecalculator';
 import { services } from '../data';
 
 const Services = () => {
@@ -46,8 +47,9 @@ const Services = () => {
           ))}
         </div>
       </section>
-
+      
       <ProcessSection />
+      <Pricecalcuator />
       <CTASection />
     </>
   );

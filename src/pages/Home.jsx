@@ -8,6 +8,8 @@ import ProcessSection from '../components/sections/ProcessSection';
 import TestimonialsSection from '../components/sections/TestimonialsSection';
 import CTASection from '../components/sections/CTASection';
 import MarqueeText from '../components/ui/MarqueeText';
+import PriceList from '../components/sections/Pricelistsection';
+import MitraSection from '../components/sections/Mitrasection';
 
 const Home = () => {
   return (
@@ -18,7 +20,9 @@ const Home = () => {
         <MarqueeText text="Arsitektur · Interior · Komersial · Residensial · Lansekap · " />
       </div>
       <ServicesSection />
+      <PriceList />
       <FeaturedProjects />
+      <MitraSection />
       <HorizontalShowcase />
       <WhyUsSection />
       <ProcessSection />
