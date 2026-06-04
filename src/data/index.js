@@ -16,6 +16,7 @@ export const siteConfig = {
   ceo: 'Hendi Anwar',
 };
 
+
 export const navLinks = [
   { label: 'Beranda', path: '/' },
   { label: 'Tentang', path: '/about' },
